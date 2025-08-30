@@ -42,7 +42,7 @@ model.eval()
 
 ckpt = torch.load(ckpt_path, map_location=device)
 model.load_state_dict(ckpt["model"])
-print("✅ YOLOX + ByteTrack pretrained model loaded")
+print("YOLOX + ByteTrack pretrained model loaded")
 
 # -------------------------
 # Initialize ByteTrack
