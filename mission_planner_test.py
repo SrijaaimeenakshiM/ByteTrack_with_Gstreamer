@@ -38,7 +38,7 @@ model.eval()
 
 ckpt = torch.load(ckpt_path, map_location=device)
 model.load_state_dict(ckpt["model"])
-print("✅ YOLOX + ByteTrack pretrained model loaded")
+print("YOLOX + ByteTrack pretrained model loaded")
 
 # -------------------------
 # Initialize ByteTrack
@@ -53,7 +53,7 @@ object_counter = {}
 print("Connecting to SITL drone...")
 vehicle = connect("udp:127.0.0.1:14552", wait_ready=True)
 vehicle.mode = VehicleMode("GUIDED")
-print("✅ Drone connected")
+print("Drone connected")
 
 # Drone altitude
 altitude_m = 10
@@ -102,7 +102,7 @@ def uav_to_ne(x_uav, y_uav, yaw_rad):
 def run_video(source=0, save_result=False):
     cap = cv2.VideoCapture(source)
     if not cap.isOpened():
-        print(f"❌ Cannot open video source: {source}")
+        print(f" Cannot open video source: {source}")
         return
 
     save_writer = None
@@ -115,7 +115,7 @@ def run_video(source=0, save_result=False):
         save_writer = cv2.VideoWriter("results/output.mp4", fourcc, fps, (w, h))
 
     arm_and_takeoff(altitude_m)
-    print("🚀 Starting detection + tracking...")
+    print("Starting detection + tracking...")
 
     global object_counter
 
@@ -186,7 +186,7 @@ def run_video(source=0, save_result=False):
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
-    print("✅ Final count:", len(object_counter))
+    print("Final count:", len(object_counter))
     cap.release()
     if save_writer:
         save_writer.release()
