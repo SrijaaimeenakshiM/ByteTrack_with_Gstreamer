@@ -35,7 +35,7 @@ model.eval()
 ckpt = torch.load(ckpt_path, map_location=device)
 model.load_state_dict(ckpt["model"])
 fuse_model(model)
-print("✅ YOLOX + ByteTrack pretrained model loaded")
+print("YOLOX + ByteTrack pretrained model loaded")
 
 # -------------------------
 # Initialize Tracker
@@ -55,13 +55,13 @@ count_line_ratio = 0.5  # horizontal line at 50% of frame height
 def run_video(source=0, save_result=False):
     cap = cv2.VideoCapture(source)
     if not cap.isOpened():
-        print(f"❌ Cannot open video source: {source}")
+        print(f"Cannot open video source: {source}")
         return
 
     save_writer = None
     ret, frame = cap.read()
     if not ret:
-        print("❌ Cannot read first frame")
+        print(" Cannot read first frame")
         return
     frame_h, frame_w = frame.shape[:2]
     count_line_y = int(frame_h * count_line_ratio)
@@ -132,7 +132,7 @@ def run_video(source=0, save_result=False):
         if cv2.waitKey(1) & 0xFF == ord("q"):
             break
 
-    print(f"✅ Total Count: {len(counted_ids)}")
+    print(f"Total Count: {len(counted_ids)}")
     cap.release()
     if save_writer:
         save_writer.release()
