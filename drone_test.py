@@ -50,7 +50,7 @@ model = exp.get_model().to(device)
 model.eval()
 ckpt = torch.load(ckpt_path, map_location=device)
 model.load_state_dict(ckpt["model"])
-print("✅ YOLOX + ByteTrack model loaded")
+print("YOLOX + ByteTrack model loaded")
 
 tracker = BYTETracker(args, frame_rate=30)
 timer = Timer()
